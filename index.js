@@ -51,15 +51,23 @@ function propertyIsUnsafe(target, key) {
 			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
 }
 
+// Keys that would modify the prototype of the destination object when assigned.
+function keyIsForbidden(key) {
+	return key === '__proto__'
+}
+
 function mergeObject(target, source, options) {
 	var destination = {}
 	if (options.isMergeableObject(target)) {
 		getKeys(target).forEach(function(key) {
+			if (keyIsForbidden(key)) {
+				return
+			}
 			destination[key] = cloneUnlessOtherwiseSpecified(target[key], options)
 		})
 	}
 	getKeys(source).forEach(function(key) {
-		if (propertyIsUnsafe(target, key)) {
+		if (keyIsForbidden(key) || propertyIsUnsafe(target, key)) {
 			return
 		}
 
