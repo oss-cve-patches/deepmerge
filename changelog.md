@@ -1,3 +1,7 @@
+# 4.3.2
+
+- Security: always drop `__proto__` keys when merging, fixing prototype poisoning when the target has a null prototype, a `null`/primitive placeholder, or its own `__proto__` key. [CVE-2026-93753](https://www.cve.org/CVERecord?id=CVE-2026-93753), [#273](https://github.com/TehShrike/deepmerge/issues/273)
+
 # [4.3.1](https://github.com/TehShrike/deepmerge/releases/tag/v4.3.1)
 
 - Fix type definition for arrayMerge options.  [#239](https://github.com/TehShrike/deepmerge/pull/239)
