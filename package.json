@@ -1,5 +1,5 @@
 {
-  "name": "deepmerge",
+  "name": "@oss-cve-patches/deepmerge",
   "description": "A library for deep (recursive) merging of Javascript objects",
   "keywords": [
     "merge",
@@ -10,10 +10,10 @@
     "recursive"
   ],
   "version": "4.3.2",
-  "homepage": "https://github.com/TehShrike/deepmerge",
+  "homepage": "https://github.com/oss-cve-patches/deepmerge",
   "repository": {
     "type": "git",
-    "url": "git://github.com/TehShrike/deepmerge.git"
+    "url": "git+https://github.com/oss-cve-patches/deepmerge.git"
   },
   "main": "dist/cjs.js",
   "engines": {
@@ -23,7 +23,8 @@
     "build": "rollup -c",
     "test": "npm run build && tape test/*.js && jsmd readme.md && npm run test:typescript",
     "test:typescript": "tsc --noEmit test/typescript.ts && ts-node test/typescript.ts",
-    "size": "npm run build && uglifyjs --compress --mangle -- ./dist/umd.js | gzip -c | wc -c"
+    "size": "npm run build && uglifyjs --compress --mangle -- ./dist/umd.js | gzip -c | wc -c",
+    "prepublishOnly": "npm test"
   },
   "devDependencies": {
     "@types/node": "^8.10.54",
@@ -38,5 +39,8 @@
     "typescript": "=2.2.2",
     "uglify-js": "^3.6.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
